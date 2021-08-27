@@ -1,0 +1,33 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:ReactiveUIIEnumerableInCommandParameter.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="ReactiveUIIEnumerableInCommandParameter.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="ReactiveUIIEnumerableInCommandParameter">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+    <Grid RowDefinitions="Auto, *">
+        <ListBox x:Name="ElementsListBox" SelectionMode="Multiple">
+            <ListBox.DataTemplates>
+                <DataTemplate DataType="{x:Type vm:Element}">
+                    <TextBlock Text="{Binding Text}"/>
+                </DataTemplate>
+            </ListBox.DataTemplates>
+            <ListBox.Styles>
+                <Style Selector="ListBoxItem">
+                    <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}"/>
+                </Style>
+            </ListBox.Styles>
+        </ListBox>
+        <Button x:Name="InvokeCommandButton" Grid.Row="1"
+                CommandParameter="{Binding SelectedElements,
+                 Converter={StaticResource IEnumerableToListConverter}, 
+                 Mode=OneWay}"
+                Content="InvokeCommand"/>
+    </Grid>
+</Window>

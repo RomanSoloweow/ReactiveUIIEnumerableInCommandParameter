@@ -1,0 +1,17 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="using:ReactiveUIIEnumerableInCommandParameter"
+             xmlns:converters="clr-namespace:ReactiveUIIEnumerableInCommandParameter.Converters"
+             x:Class="ReactiveUIIEnumerableInCommandParameter.App">
+    <Application.DataTemplates>
+        <local:ViewLocator/>
+    </Application.DataTemplates>
+    <Application.Resources>
+        <ResourceDictionary>
+            <converters:IEnumerableToList x:Key="IEnumerableToListConverter"/>
+        </ResourceDictionary>
+    </Application.Resources>
+    <Application.Styles>
+        <FluentTheme Mode="Light"/>
+    </Application.Styles>
+</Application>
